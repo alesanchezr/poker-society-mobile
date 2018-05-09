@@ -14,7 +14,7 @@ export default class Home extends Flux.View {
             menu: [
                 { id: 1, title: 'Vegas Summer Series', children: [
                         { id: 2, title: 'Vegas 2018', calendar: 2978, url:'/calendar/2978' },
-                        { id: 2, title: 'Vegas 2017 (Results)', calendar: 1746, url:'/calendar/1476' }
+                        { id: 2, title: 'Vegas 2017 (Results)', calendar: 1746, url:'/calendar/1746' }
                     ]
                 },
                 { id: 3, title: 'Ft Lauderdale - Miami', children: [
