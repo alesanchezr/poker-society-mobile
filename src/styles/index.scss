@@ -15,6 +15,9 @@
     .calendar{
         overflow: auto;
         margin-top: -55px;
+        @media (min-width: 576px){
+            zoom: 1 !important;
+        }
         tbody{
             font-size: 12px;
         }
@@ -55,6 +58,12 @@
         right: 10px;
     }
 }
-
-.tournament-heading{
+.bottom-bar{
+    .nav-item{
+        padding-top: 10px;
+        cursor: pointer;
+        &:hover{
+            background: #BDBDBD;
+        }
+    }
 }

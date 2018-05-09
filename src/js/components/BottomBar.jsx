@@ -34,7 +34,7 @@ class BottomBar extends React.Component{
             </li>)
         );
         return (
-            <ul className="bottom-bar nav nav-fill pt-2">
+            <ul className="bottom-bar nav nav-fill">
                 {menuItems}
             </ul>
         );

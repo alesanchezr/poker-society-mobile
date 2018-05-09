@@ -6,9 +6,7 @@ import pokerImg from '../../img/poker-society.jpg';
 import Navbar from "../components/Navbar.jsx";
 import API from '../API';
 
-
-
-export default class Casion extends Flux.View {
+export default class Casino extends Flux.View {
     
     constructor(){
         super();
