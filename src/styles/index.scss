@@ -1,4 +1,7 @@
 @import '~bootstrap/scss/bootstrap.scss';
+@import 'extend';
+@import 'typography';
+@import 'home';
 
 .home{
     background-size: contain;
@@ -11,8 +14,12 @@
 .tournaments{
     .calendar{
         overflow: auto;
+        margin-top: -55px;
         tbody{
             font-size: 12px;
+        }
+        .tournament{
+            min-width: 450px;
         }
     }
     .bottom-bar{
@@ -38,9 +45,7 @@
         border: none;
         border-radius: 0;
         font-size: 16px;
-        width: 100%;
         &:focus{
-            font-size: 20px;
             background: #ffdbda;
         }
     }
@@ -49,4 +54,7 @@
         top: 6px;
         right: 10px;
     }
+}
+
+.tournament-heading{
 }

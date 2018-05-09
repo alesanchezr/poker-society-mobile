@@ -17,10 +17,8 @@ export default class Navbar extends React.Component{
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="tournaments">Home</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="tournaments">Tournaments</NavLink>
+                            <NavLink className="nav-link" to="/home">Home</NavLink>
+                            <a className="nav-link" href="mailto:lou@thepokersociety.com">Contact Us</a>
                         </li>
                     </ul>
                 </div>

@@ -1,6 +1,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -9,7 +10,8 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public')
+    path: path.resolve(__dirname, 'public'),
+    publicPath: path.resolve(__dirname, '/')
   },
   module: {
     rules: [
@@ -73,6 +75,9 @@ module.exports = {
     new HtmlWebpackPlugin({
         favicon: '4geeks.ico',
         template: 'template.html'
+    }),
+    new Dotenv({
+      path: './.env.prod'
     })
   ]
 };
