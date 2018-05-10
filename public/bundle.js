@@ -62,7 +62,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5e3d8ce23a3eab338649"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "631b25f19b8cc2c05d3f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -80777,7 +80777,8 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-var API = new _wpapi2.default({ endpoint: 'https://pokersociety-alesanchezr.c9users.io/pokersociety/wp-json/' });
+var API = new _wpapi2.default({ endpoint: "http://admin.thepokersociety.com/wp-json" }); /* global process */
+
 API.tournament = API.registerRoute('ps/v1', '/tournament/(?P<id>\\d+)');
 API.calendar = API.registerRoute('ps/v1', '/calendar/(?P<id>\\d+)');
 API.casino = API.registerRoute('ps/v1', '/casino/(?P<id>\\d+)');
