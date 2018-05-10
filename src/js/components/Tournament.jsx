@@ -19,7 +19,7 @@ class Tournament extends React.Component{
       const year = t.date.getFullYear();
       const strDate = day+' '+month+' '+year;
         return (
-            <tr className={this.props.className+' '} style={styles}>
+            <tr className={this.props.className} style={styles} ref={(c) => this.tableRow = c}>
                 <th className='date text-center'>{strDate}</th>
                 <th className='day'>{t.day}</th>
                 <th className='time'>{t.time}</th>

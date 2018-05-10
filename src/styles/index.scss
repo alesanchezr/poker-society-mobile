@@ -15,14 +15,35 @@
     .calendar{
         overflow: auto;
         margin-top: -55px;
-        @media (min-width: 576px){
-            zoom: 1 !important;
-        }
-        tbody{
-            font-size: 12px;
-        }
-        .tournament{
-            min-width: 450px;
+        .table{
+            margin-top: 39px;
+            font-size: 6px;
+            thead{font-size: 8px;}
+            .where{ min-width: 25px; }
+            .day{ min-width: 25px; }
+            .blinds{ min-width: 55px; }
+            .time{ min-width: 25px; }
+            .date{ min-width: 25px; }
+            .tournament{ min-width: 70px; }
+            @media (min-width: 576px){
+                font-size: 10px;
+                thead{font-size: 14px;}
+                .date{ min-width: 80px; }
+                .time{ min-width: 55px; }
+                .day{ min-width: 55px; }
+                .where{ min-width: 175px; }
+                .blinds{ min-width: 55px; }
+                .tournament{ width: 100%; }
+            }
+            &.zoomed{
+                font-size: 18px;
+                thead{font-size: inherit;}
+                @media (min-width: 576px){
+                    font-size: 18px;
+                }
+                .tournament{ min-width: 400px; }
+                .where{ min-width: 300px; }
+            }
         }
     }
     .bottom-bar{

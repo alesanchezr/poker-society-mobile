@@ -18,7 +18,7 @@ export default class Navbar extends React.Component{
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/home">Home</NavLink>
-                            <a className="nav-link" href="mailto:lou@thepokersociety.com">Contact Us</a>
+                            <a className="nav-link" href="mailto:info@thepokersociety.com">Contact Us</a>
                         </li>
                     </ul>
                 </div>

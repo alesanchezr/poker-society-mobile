@@ -15,20 +15,54 @@ export default class Calendar extends Flux.View {
         super();
         this.state = {
             tournaments: [],
-            zoom: 0.3,
+            zoom: false,
             searchType: null,
             searchString: '',
-            error: null
+            error: null,
+            stickySyles: {},
+            stickySyles2: {}
         };
+        this.todayTournament = null;
     }
     
-    componentWillMount(){
+    componentDidMount(){
         const HOST = process.env.API_HOST+'/ps/v1';
         const tournaments = TheStore.getTournaments(this.props.match.params.cal_id);
         if(!tournaments) this.goFetch('GET', `${HOST}/tournament/calendar/${this.props.match.params.cal_id}`);
         else this.fillTournaments(tournaments);
+        
+        window.addEventListener('scroll', this.handleScroll.bind(this));
+        this.tableBody.addEventListener('scroll', this.handleScrollTable.bind(this));
     }
-    
+    componentWillUnmount(){
+        window.removeEventListener('scroll', this.handleScroll.bind(this));
+        if(this.tableBody) this.tableBody.removeEventListener('scroll', this.handleScrollTable.bind(this));
+    }
+    handleScrollTable(e){
+        let scrollTop = window.scrollY;
+        if (scrollTop > 100) this.thead.scrollLeft = this.tableBody.scrollLeft;
+    }
+    handleScroll(e){
+        let scrollTop = window.scrollY;
+        if (scrollTop > 100){
+            if(typeof this.state.stickySyles.position === 'undefined'){
+                this.setState({
+                    stickySyles:{
+                        position: 'fixed',
+                        background: 'white',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        overflowY: 'hidden'
+                    },
+                    stickySyles2: {
+                        //width: this.tableBody.offsetWidth,
+                        width: "100%",
+                    } 
+                });
+            }
+        }else this.setState({ stickySyles: {}, stickySyles2: {}});
+    }
     goFetch(method, url){
         let opts = { 
             method, 
@@ -53,6 +87,7 @@ export default class Calendar extends Flux.View {
     }
     
     fillTournaments(data){
+        this.todayTournament = null;
         this.setState({ 
             tournaments: data.map((t) => {
                 t[0] = new Date(t[0]);
@@ -63,7 +98,7 @@ export default class Calendar extends Flux.View {
     
     bottomBarClick(item){
         switch(item.slug){
-            case "zoom": this.setState({ zoom: (this.state.zoom === 1) ? 0.3 : 1 }); break;
+            case "zoom": this.setState({ zoom: (this.state.zoom) ? false : true }); break;
             case "scroll-top": 
                 window.scrollTo(0,0); 
             break;
@@ -130,19 +165,34 @@ export default class Calendar extends Flux.View {
                 
                 return false;
             });
-        
-        const tournaments = filteredTournaments.map((tour, i) => (<Tournament key={i} data={{
-            date: tour[0],
-            day: tour[1],
-            time: tour[2],
-            venueName: tour[3],
-            venueId: tour[9],
-            tournament: tour[4],
-            tournamentId: tour[10],
-            buyin: tour[5],
-            starting: tour[6],
-            blinds: tour[7]
-        }} />));
+        const tournaments = filteredTournaments.map((tour, i) => {
+            return (
+                <Tournament 
+                    ref={(c) =>{
+                        if(!this.todayTournament){
+                            let today = (new Date()).setHours(0,0,0,0);
+                            let current = tour[0].getTime();
+                            if(current >= today){
+                                this.todayTournament = c;
+                                window.scrollTo(0,c.tableRow.offsetTop);
+                            } 
+                        }
+                    }}
+                    key={i} data={
+                    {
+                        date: tour[0],
+                        day: tour[1],
+                        time: tour[2],
+                        venueName: tour[3],
+                        venueId: tour[9],
+                        tournament: tour[4],
+                        tournamentId: tour[10],
+                        buyin: tour[5],
+                        starting: tour[6],
+                        blinds: tour[7]
+                    }
+                } />);
+            });
         return (
             <div className="tournaments">
                 <Navbar />
@@ -158,22 +208,20 @@ export default class Calendar extends Flux.View {
                             (!this.state.tournaments || this.state.tournaments.length==0) ?
                                 <div className='alert alert-info text-center'>Loading tournaments...</div> : ''
                         }
-                        <div className="calendar" ref={(c) => this.calendar = c}
-                            style={{
-                                zoom: this.state.zoom
-                            }}
-                        >
-                            <table className="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th id="Date" data-type="String">Date</th>
-                                        <th id="Day" data-type="String">Day</th>
-                                        <th id="Time" data-type="String">Time</th>
-                                        <th id="Where" data-type="String">Where</th>
-                                        <th id="Tournament" data-type="String">Tournament</th>
+                        <div className="calendar" ref={(c) => this.calendar = c}>
+                            <table className={"table-responsive table table-striped "+((this.state.zoom) ? 'zoomed':'')}
+                                ref={(c) => this.tableBody = c}
+                                >
+                                <thead style={this.state.stickySyles} ref={(c) => this.thead = c}>
+                                    <tr style={this.state.stickySyles2}>
+                                        <th id="Date" className="date" data-type="String">Date</th>
+                                        <th id="Day" className="day" data-type="String">Day</th>
+                                        <th id="Time" className="time" data-type="String">Time</th>
+                                        <th id="Where" className="where" data-type="String">Where</th>
+                                        <th id="Tournament" className="tournament" data-type="String">Tournament</th>
                                         <th id="Buy_in" data-type="String">Buyin</th>
                                         <th id="Starting_Stack" data-type="String">Starting</th>
-                                        <th id="Blinds" data-type="String">Blinds</th>
+                                        <th id="Blinds" className="blinds" data-type="String">Blinds</th>
                                     </tr>
                                 </thead>
                                 <tbody>
