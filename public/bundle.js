@@ -62,7 +62,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "631b25f19b8cc2c05d3f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b7f02d7a699b9acd404b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -81632,7 +81632,7 @@ var Calendar = function (_Flux$View) {
             var _this3 = this;
 
             var filteredTournaments = this.state.tournaments;
-            if (this.state.searchString.length > 2) filteredTournaments = this.state.tournaments.filter(function (t) {
+            if (this.state.searchString.length > 1) filteredTournaments = this.state.tournaments.filter(function (t) {
                 if (_this3.state.searchType && _this3.state.searchType !== 'filter') {
                     if (_this3.state.searchType == 'date') {
                         var searchDate = _chronoNode2.default.parseDate(_this3.state.searchString);

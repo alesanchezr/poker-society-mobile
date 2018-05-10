@@ -89,7 +89,7 @@ export default class Calendar extends Flux.View {
     render() {
         
         let filteredTournaments = this.state.tournaments;
-        if(this.state.searchString.length > 2) 
+        if(this.state.searchString.length > 1) 
             filteredTournaments = this.state.tournaments.filter((t) => {
                 if(this.state.searchType && this.state.searchType!=='filter'){
                     if(this.state.searchType == 'date'){
