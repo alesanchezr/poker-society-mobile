@@ -20,9 +20,11 @@ export default class Calendar extends Flux.View {
             searchString: '',
             error: null,
             stickySyles: {},
-            stickySyles2: {}
+            stickySyles2: {},
+            //todayPositionY: null
         };
         this.todayTournament = null;
+        this.rounder = null;
     }
     
     componentDidMount(){
@@ -98,7 +100,10 @@ export default class Calendar extends Flux.View {
     
     bottomBarClick(item){
         switch(item.slug){
-            case "zoom": this.setState({ zoom: (this.state.zoom) ? false : true }); break;
+            case "zoom":
+                this.todayTournament = null;
+                this.setState({ zoom: (this.state.zoom) ? false : true }); 
+            break;
             case "scroll-top": 
                 window.scrollTo(0,0); 
             break;
@@ -169,12 +174,14 @@ export default class Calendar extends Flux.View {
             return (
                 <Tournament 
                     ref={(c) =>{
-                        if(!this.todayTournament){
+                        if(!this.todayTournament && c){
                             let today = (new Date()).setHours(0,0,0,0);
                             let current = tour[0].getTime();
                             if(current >= today){
                                 this.todayTournament = c;
                                 window.scrollTo(0,c.tableRow.offsetTop);
+                                c.tableRow.classList.add('today');
+                                //this.setState({ todayPositionY: c.tableRow.offsetTop });
                             } 
                         }
                     }}
@@ -195,6 +202,10 @@ export default class Calendar extends Flux.View {
             });
         return (
             <div className="tournaments">
+                { //(this.state.todayPositionY) ? 
+                    //<div className="today" style={{ top: this.state.todayPositionY }}>Today</div>
+                    //:''
+                }
                 <Navbar />
                 { (this.state.error) ? 
                     <div className='alert alert-danger text-center'>{this.state.error}</div>
