@@ -54,8 +54,15 @@
                 @media (min-width: 576px){
                     font-size: 18px;
                 }
-                .tournament{ min-width: 400px; }
-                .where{ min-width: 300px; }
+                .day{ max-width: 18px; }
+                .time{ min-width: 100px; }
+                .where{ max-width: 150px; }
+                .tournament{ width: 400px; }
+                .buyin{ max-width: 80px; text-align: left; }
+                .starting{ max-width: 80px; text-align: left;  }
+                .blinds{ max-width: 80px; text-align: left; 
+                    span{display: block;}
+                }
             }
         }
     }
