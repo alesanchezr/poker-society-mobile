@@ -18,6 +18,7 @@ class Tournament extends React.Component{
       const month = this.getMonthName(t.date.getMonth());
       const year = t.date.getFullYear();
       const strDate = day+' '+month+' '+year;
+      const blinds = t.blinds.split('/').map((b,i) => (<span key={i} className="blind-item">{b}</span>));
         return (
             <tr className={this.props.className} style={styles} ref={(c) => this.tableRow = c}>
                 <th className='date text-center'>{strDate}</th>
@@ -31,7 +32,7 @@ class Tournament extends React.Component{
                 </th>
                 <th className='buyin'>{t.buyin}</th>
                 <th className='starting'>{t.starting}</th>
-                <th className='blinds'>{t.blinds}</th>
+                <th className='blinds'>{blinds}</th>
             </tr>
         );
     }

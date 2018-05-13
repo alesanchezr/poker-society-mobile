@@ -230,8 +230,8 @@ export default class Calendar extends Flux.View {
                                         <th id="Time" className="time" data-type="String">Time</th>
                                         <th id="Where" className="where" data-type="String">Where</th>
                                         <th id="Tournament" className="tournament" data-type="String">Tournament</th>
-                                        <th id="Buy_in" data-type="String">Buyin</th>
-                                        <th id="Starting_Stack" data-type="String">Starting</th>
+                                        <th id="Buy_in" className="buyin" data-type="String">Buyin</th>
+                                        <th id="Starting_Stack" className="starting" data-type="String">Stack</th>
                                         <th id="Blinds" className="blinds" data-type="String">Blinds</th>
                                     </tr>
                                 </thead>

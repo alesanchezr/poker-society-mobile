@@ -19,6 +19,7 @@ export default class Home extends Flux.View {
                 },
                 { id: 3, title: 'Ft Lauderdale - Miami', children: [
                         { id: 4, title: 'May 2018', url:'/calendar/4190', calendar: 4190 },
+                        { id: 4, title: 'August 2018', url:'/calendar/12034', calendar: 4190 },
                     ]
                 }
             ]

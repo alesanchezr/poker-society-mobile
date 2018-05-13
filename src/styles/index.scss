@@ -14,19 +14,6 @@
 .tournaments{
     .today{
         border-top: solid 10px #fff4d2;
-        // &:before{ 
-            // content: '.';
-            // background: #fff4d2;
-            // color: #fff4d2;
-            // width: 100vw;
-            // position: absolute;
-            // display: inline-block;
-            // text-align: center;
-            // font-weight: 800;
-            // font-size: 10px;
-            // letter-spacing: 2px;
-            // margin-top: -10px;
-        // }
     }
     .calendar{
         overflow: auto;
@@ -35,20 +22,30 @@
             margin-top: 39px;
             font-size: 6px;
             thead{font-size: 8px;}
-            .where{ min-width: 25px; }
-            .day{ min-width: 25px; }
-            .blinds{ min-width: 55px; }
-            .time{ min-width: 25px; }
+            .day{ max-width: 18px; }
+            .time{ min-width: 20px; }
+            .where{ max-width: 50px; }
+            .tournament{ width: 100%; }
+            .buyin{ max-width: 28px; text-align: center; }
+            .starting{ max-width: 28px; text-align: center;  }
+            .blinds{ max-width: 40px; text-align: center; 
+                span{display: block;}
+            }
             .date{ min-width: 25px; }
-            .tournament{ min-width: 70px; }
             @media (min-width: 576px){
                 font-size: 10px;
                 thead{font-size: 14px;}
-                .date{ min-width: 80px; }
-                .time{ min-width: 55px; }
+                .date{ min-width: 100px; }
+                .time{ min-width: 80px; }
+                .buyin{ min-width: 55px; text-align: left; }
                 .day{ min-width: 55px; }
                 .where{ min-width: 175px; }
-                .blinds{ min-width: 55px; }
+                .starting{ min-width: 55px; text-align: left; }
+                .blinds{ min-width: 55px;  text-align: left; 
+                    span{ display: inline;}
+                    span:before{ content: '/'; }
+                    span:first-child:before{ content: ''; }
+                }
                 .tournament{ width: 100%; }
             }
             &.zoomed{

@@ -21,8 +21,6 @@ ReactDOM.render(
     document.querySelector('#app')
 );
 
-$( document ).ready(function() {
-    $("li.dropdown").click(function(e){
-      $(this).toggleClass("open");
-    });
+$("li.dropdown").click(function(e){
+  $(this).toggleClass("open");
 });

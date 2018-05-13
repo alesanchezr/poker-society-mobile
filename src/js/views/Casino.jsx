@@ -77,6 +77,7 @@ export default class Casino extends Flux.View {
                                 <a target="_blank" rel="nofollow" href={`https://www.google.com/maps?daddr=${this.state.location.lat},${this.state.location.lng}`} className="btn btn-light form-control">See it on maps</a>
                                 :''
                             }
+                            <button onClick={() => this.props.history.goBack()} className="btn btn-light form-control">Back to calendar</button>
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ export default class Tournament extends Flux.View {
         this.state = {
            title: 'Loading...', 
            description: null ,
-           blinds: null ,
+           blinds: '' ,
            id: null,
            buyin: null ,
            resultsLink: null ,
@@ -32,7 +32,7 @@ export default class Tournament extends Flux.View {
                 this.setState({
                    title: data.post_title, 
                    description: data.post_content ,
-                   blinds: data.blinds ,
+                   blinds: (data.blinds) ? data.blinds : '',
                    id: tourId,
                    buyin: data['buy-in'] ,
                    resultsLink: data['results-link'] ,
@@ -81,7 +81,7 @@ export default class Tournament extends Flux.View {
                         { (this.state.startingStack) ? this.state.startingStack : 'No info' }
                     </div>
                     <div className='col-4'>
-                        { (this.state.blinds) ? this.state.blinds : 'No info' }
+                        {this.state.blinds}
                     </div>
                 </div>
                 <div className='row py-4'>
@@ -100,6 +100,7 @@ export default class Tournament extends Flux.View {
                                 <a target="_blank" href={this.state.resultsLink} className="btn btn-light form-control">Results</a>
                                 :''
                             }
+                            <button onClick={() => this.props.history.goBack()} className="btn btn-light form-control">Back to calendar</button>
                         </div>
                     </div>
                 </div>

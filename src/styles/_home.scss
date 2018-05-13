@@ -1,4 +1,21 @@
 .select-tournament{
     width: 100%;
     margin: auto;
+    .nav-item{
+        .nav-link{
+            &.open{background: #BDBDBD;}
+            padding: 12px;
+            border-radius: 5px;
+            background: white;
+            margin-bottom: 10px;
+        }
+    }
+    .dropdown-menu{
+        margin-bottom: 10px;
+        .dropdown-item{
+            height: 70px;
+            padding: 20px;
+            text-align: center;
+        }
+    }
 }
