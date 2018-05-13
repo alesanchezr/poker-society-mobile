@@ -34,7 +34,9 @@ export default class Home extends Flux.View {
     render() {
         const menuItems = this.state.menu.map((menu, i) => (
             <li key={i} className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a  className="nav-link dropdown-toggle" to="#" id="navbarDropdown"
+                    onClick={() => console.log('asd')}
+                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {menu.title}
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">

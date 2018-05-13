@@ -4,8 +4,13 @@ import {Link, NavLink} from 'react-router-dom';
 
 export default class Navbar extends React.Component{
     
+    componentWillMount(){
+        
+    }
+    
     render(){
         return (
+            
             <nav className="main-navbar navbar navbar-light bg-light">
                 <Link className="navbar-brand" to="/">
                     <img className="mr-2" src={PokerIcon}/>

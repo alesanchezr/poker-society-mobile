@@ -3,6 +3,9 @@
 @import 'typography';
 @import 'home';
 
+.navbar{
+     z-index: 999999999;   
+}
 .home{
     background-size: contain;
     background-color: black;
