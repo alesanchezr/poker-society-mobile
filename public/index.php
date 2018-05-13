@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="/poker-icon.ico"></head>
     <body>
     <?php 
-        $content = @file_get_contents('https://admin.thepokersociety.com/wp-json/ps/v1/settings');
+        $content = @file_get_contents('http://admin.thepokersociety.com/wp-json/ps/v1/settings');
         if($content)
         {
             $settings = json_decode($content);
