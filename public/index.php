@@ -18,7 +18,7 @@
                         ?>
                     	<div>
                         	<p></p>
-                        	<p style="text-align: center;"><img class="aligncenter wp-image-36 size-medium" src="pokersociety.png" alt="" width="300" height="229"></p>
+                        	<p style="text-align: center;"><img class="aligncenter wp-image-36 size-medium" src="/pokersociety.png" alt="" width="300" height="229"></p>
                             <h1 style="text-align: center;">Website Under Maintenance</h1>
                             <p style="text-align: center;">Our Website is currently undergoing scheduled maintenance. Please check back soon.</p><p></p>
                     	</div>
