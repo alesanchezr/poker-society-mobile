@@ -36,7 +36,7 @@ class SearchBar extends React.Component{
             </a>
         ));
         return (
-            <div className={"searchbar sticky-top "+this.props.className}>
+            <div className={"searchbar "+this.props.className}>
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
                         <div className="dropdown">
