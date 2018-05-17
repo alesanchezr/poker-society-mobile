@@ -40,6 +40,6 @@
         }
     ?>
         <div id="app"></div>
-        <script type="text/javascript" src="/bundle.js"></script>
+        <script type="text/javascript" src="/bundle.js?v0.01"></script>
     </body>
 </html>
