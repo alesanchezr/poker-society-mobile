@@ -7,7 +7,8 @@ class BottomBar extends React.Component{
     constructor(){
         super();
         this.state = {
-            menuItems: []
+            menuItems: [],
+            scrolled: false
         };
     }
     
@@ -24,13 +25,21 @@ class BottomBar extends React.Component{
     }
     
     render(){
-        
+        const rotateClass = (!this.state.scrolled) ? '': 'fa-rotate-180';
         const menuItems = this.state.menuItems.map((item,i) => 
-            (<li key={i} className="nav-item">
+            (<li key={i} className="nav-item" onClick={() => {
+                    this.setState({ scrolled: !this.state.scrolled });
+                    this.props.onClick((!this.state.scrolled) ? item.slug : 'today');
+                }}>
                 {
-                    (item.icon) ? <i className={item.icon+" fa-lg"}></i> : ''
+                    (item.icon) ? 
+                        <i className={item.icon+" fa-lg "+rotateClass}></i> : ''
                 }
-                <a className="nav-link" onClick={() => this.props.onClick(item)}>{item.label}</a>
+                {(!this.state.scrolled) ?
+                    <a className="nav-link">{item.label}</a>
+                    :
+                    <a className="nav-link">Got to today</a>
+                }
             </li>)
         );
         return (

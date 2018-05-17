@@ -16,6 +16,7 @@ export default class Calendar extends Flux.View {
         this.state = {
             tournaments: [],
             zoom: false,
+            stick: false,
             searchType: null,
             searchString: '',
             error: null,
@@ -24,6 +25,7 @@ export default class Calendar extends Flux.View {
             //todayPositionY: null
         };
         this.todayTournament = null;
+        this.todayPosition = 0;
         this.rounder = null;
     }
     
@@ -49,10 +51,11 @@ export default class Calendar extends Flux.View {
         if (scrollTop > 100){
             if(typeof this.state.stickySyles.position === 'undefined'){
                 this.setState({
+                    sticky: true,
                     stickySyles:{
                         position: 'fixed',
                         background: 'white',
-                        top: 0,
+                        top: '38px',
                         left: 0,
                         width: '100%',
                         overflowY: 'hidden'
@@ -63,7 +66,7 @@ export default class Calendar extends Flux.View {
                     } 
                 });
             }
-        }else this.setState({ stickySyles: {}, stickySyles2: {}});
+        }else this.setState({ stickySyles: {}, stickySyles2: {}, sticky: false});
     }
     goFetch(method, url){
         let opts = { 
@@ -98,14 +101,17 @@ export default class Calendar extends Flux.View {
         });
     }
     
-    bottomBarClick(item){
-        switch(item.slug){
+    bottomBarClick(slug){
+        switch(slug){
             case "zoom":
                 this.todayTournament = null;
                 this.setState({ zoom: (this.state.zoom) ? false : true }); 
             break;
             case "scroll-top": 
                 window.scrollTo(0,0); 
+            break;
+            case "today": 
+                window.scrollTo(0,this.todayPosition); 
             break;
         }
     }
@@ -179,6 +185,7 @@ export default class Calendar extends Flux.View {
                             let current = tour[0].getTime();
                             if(current >= today){
                                 this.todayTournament = c;
+                                this.todayPosition = c.tableRow.offsetTop;
                                 window.scrollTo(0,c.tableRow.offsetTop);
                                 c.tableRow.classList.add('today');
                                 //this.setState({ todayPositionY: c.tableRow.offsetTop });
@@ -211,10 +218,13 @@ export default class Calendar extends Flux.View {
                     <div className='alert alert-danger text-center'>{this.state.error}</div>
                     :
                     <div>
-                        <SearchBar onChange={(token, type) => this.setState({
-                            searchString: token,
-                            searchType: type
-                        })} />
+                        <SearchBar 
+                            className={(this.state.sticky) ? 'sticky':''}
+                            onChange={(token, type) => this.setState({
+                                searchString: token,
+                                searchType: type
+                            })} 
+                        />
                         {
                             (!this.state.tournaments || this.state.tournaments.length==0) ?
                                 <div className='alert alert-info text-center'>Loading tournaments...</div> : ''
@@ -242,7 +252,7 @@ export default class Calendar extends Flux.View {
                         </div>
                         <BottomBar 
                             menuItems={[
-                                { label: 'Zoom', slug: 'zoom', icon: 'fas fa-search' },
+               //                 { label: 'Zoom', slug: 'zoom', icon: 'fas fa-search' },
                                 { label: 'Scroll Top', slug: 'scroll-top', icon: 'fas fa-arrow-up' }
                             ]} 
                             onClick={(item) => this.bottomBarClick(item)}
