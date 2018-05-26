@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import pokerImg from '../../img/poker-society.jpg';
 import Navbar from "../components/Navbar.jsx";
 import API from '../API';
+import ReactDisqusComments from 'react-disqus-comments';
 
 
 export default class Tournament extends Flux.View {
@@ -15,6 +16,7 @@ export default class Tournament extends Flux.View {
            title: 'Loading...', 
            description: null ,
            blinds: '' ,
+           slug: null,
            id: null,
            buyin: null ,
            resultsLink: null ,
@@ -31,6 +33,7 @@ export default class Tournament extends Flux.View {
                 // do something with the returned posts
                 this.setState({
                    title: data.post_title, 
+                   slug: data.post_name, 
                    description: data.post_content ,
                    blinds: (data.blinds) ? data.blinds : '',
                    id: tourId,
@@ -46,7 +49,10 @@ export default class Tournament extends Flux.View {
             });
         }
     }
-  render() {
+    handleNewComment(comment) {
+        console.log(comment.text);
+    }
+    render() {
       
     const reducer = (accumulator, str, i) => {
         return accumulator + `<h${i}>${str}</h>`;
@@ -100,11 +106,24 @@ export default class Tournament extends Flux.View {
                                 <a target="_blank" href={this.state.resultsLink} className="btn btn-light form-control">Results</a>
                                 :''
                             }
-                            <button onClick={() => this.props.history.goBack()} className="btn btn-light form-control">Back to calendar</button>
+                            <button onClick={() => this.props.history.goBack()} className="btn btn-light form-control">Back</button>
                         </div>
                     </div>
                 </div>
             </div>
+            {
+                (this.state.slug) ?
+                    <div className='p-4'>
+                        <ReactDisqusComments
+                            shortname="the-poker-society"
+                            identifier={this.state.slug}
+                            title={this.state.title}
+                            url={window.location.href}
+                            category_id="123456"
+                            onNewComment={this.handleNewComment}/>
+                    </div>
+                    :''
+            }
         </div>
     );
   }
