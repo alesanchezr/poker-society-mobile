@@ -4,11 +4,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import icons from './icons.js';
 
-//include jquery into the bundle and store its contents into the $ variable
-import $ from "jquery";
-//include bootstrap npm library into the bundle
-import 'bootstrap';
-
 //include your index.scss file into the bundle
 import '../styles/index.scss';
 
@@ -21,6 +16,9 @@ ReactDOM.render(
     document.querySelector('#app')
 );
 
-$("li.dropdown").click(function(e){
-  $(this).toggleClass("open");
+import $ from "jquery";
+
+$(".navbar-toggler").click(function(e){
+  $(this).toggleClass("collapsed");
+  $(this).siblings('.collapse').toggleClass("show");
 });

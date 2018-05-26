@@ -69,8 +69,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       // In case you imported plugins individually, you must also require them here:
-      Util: "exports-loader?Util!bootstrap/js/dist/util",
-      Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
+      //Util: "exports-loader?Util!bootstrap/js/dist/util",
+      //Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
     }),
     new HtmlWebpackPlugin({
         favicon: '4geeks.ico',

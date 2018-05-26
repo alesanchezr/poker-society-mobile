@@ -6,12 +6,47 @@
 .navbar{
      z-index: 999999999;   
 }
+//.nav-link.open{background: #eeeeee;}
 .home{
     background-size: contain;
     background-color: black;
     background-repeat: no-repeat;
     height: 100vh;
     background-position: center center;
+    .submenu{
+        margin: 0 10px;
+        background: #eeeeee;
+        .nav-link.submenu-toggle{
+            width: 100%;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            &.open{background: #eeeeee}
+            &:after{
+                display: inline-block;
+                width: 0;
+                height: 0;
+                margin-left: 0.255em;
+                vertical-align: 0.255em;
+                content: "";
+                border-top: 0.3em solid;
+                border-right: 0.3em solid transparent;
+                border-bottom: 0;
+                border-left: 0.3em solid transparent;
+            }
+        }
+        .dropdown-menu{
+            background: inherit;
+            border: 0;
+        }
+        .dropdown-item{
+            padding: 10px 0;
+            height: auto;
+        }
+        .dropdown-item:hover{
+            background: inherit;
+        }
+    }
 }
 
 .tournaments{

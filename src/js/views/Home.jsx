@@ -6,29 +6,39 @@ import pokerImg from '../../img/poker-society.jpg';
 
 import Navbar from "../components/Navbar.jsx";
 import API from '../API';
+import * as PCActions from '../actions/PSActions';
+import PCStore from '../stores/PSStore';
 
 export default class Home extends Flux.View {
     constructor(){
         super();
+        PCActions.getMenu();
+        
         this.state = {
-            menu: [
-                { id: 1, title: 'Vegas Summer Series', children: [
-                        { id: 2, title: 'Vegas 2018', calendar: 2978, url:'/calendar/2978' },
-                        { id: 2, title: 'Vegas 2017 (Results)', calendar: 1746, url:'/calendar/1746' }
-                    ]
-                },
-                { id: 3, title: 'Ft Lauderdale - Miami', children: [
-                        { id: 4, title: 'May 2018', url:'/calendar/4190', calendar: 4190 },
-                        { id: 4, title: 'August 2018', url:'/calendar/12034', calendar: 4190 },
-                    ]
-                }
-            ]
+            menu: []
         };
         
     }
     
+    componentDidMount() {
+        this.menuSubscription = PCStore.subscribe("menu", (state) => {
+            this.setState({menu: state});
+        });
+    }
+    
     menuChilds(menu){
-        return menu.children.map((m, i) => (<Link key={i} className="dropdown-item" to={m.url}>{m.title}</Link>));
+        return menu.children.map((item, i) => ( <div key={i}>
+            { (typeof item.children == 'undefined' || item.children.length == 0) ?
+                <Link className="dropdown-item" to={item.url}>{item.title}</Link>
+                :
+                <div className="submenu">
+                    <button className="nav-link submenu-toggle">{item.title}</button>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {this.menuChilds(item)}
+                    </div>
+                </div>
+            }
+        </div>));
     } 
 
     render() {
