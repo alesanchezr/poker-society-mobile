@@ -112,17 +112,17 @@ export default class Tournament extends Flux.View {
                 </div>
             </div>
             {
-                (this.state.slug) ?
-                    <div className='p-4'>
-                        <ReactDisqusComments
-                            shortname="the-poker-society"
-                            identifier={this.state.slug}
-                            title={this.state.title}
-                            url={window.location.href}
-                            category_id="123456"
-                            onNewComment={this.handleNewComment}/>
-                    </div>
-                    :''
+                // (this.state.slug) ?
+                //     <div className='p-4'>
+                //         <ReactDisqusComments
+                //             shortname="the-poker-society"
+                //             identifier={this.state.slug}
+                //             title={this.state.title}
+                //             url={window.location.href}
+                //             category_id="123456"
+                //             onNewComment={this.handleNewComment}/>
+                //     </div>
+                //     :''
             }
         </div>
     );

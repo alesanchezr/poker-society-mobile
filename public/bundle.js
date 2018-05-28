@@ -62,7 +62,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "02626825a6bd7361c5a8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "226c329c47d8a2e0b67b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -77970,13 +77970,7 @@ var Tournament = function (_Flux$View) {
                 dangerouslySetInnerHTML: { __html: titles }
             })), _react2.default.createElement("div", { className: "row bg-secondary py-2 text-white" }, _react2.default.createElement("div", { className: "col-4 pt-2" }, _react2.default.createElement("h3", null, "Buy In")), _react2.default.createElement("div", { className: "col-4" }, _react2.default.createElement("h3", null, "Starting Stack")), _react2.default.createElement("div", { className: "col-4 pt-2" }, _react2.default.createElement("h3", null, "Blinds"))), _react2.default.createElement("div", { className: "row bg-light py-2" }, _react2.default.createElement("div", { className: "col-4" }, this.state.buyin ? this.state.buyin : 'No info'), _react2.default.createElement("div", { className: "col-4" }, this.state.startingStack ? this.state.startingStack : 'No info'), _react2.default.createElement("div", { className: "col-4" }, this.state.blinds)), _react2.default.createElement("div", { className: "row py-4" }, _react2.default.createElement("div", { className: "col-12" }, _react2.default.createElement("p", null, this.state.description))), _react2.default.createElement("div", { className: "row" }, _react2.default.createElement("div", { className: "col-11 mx-auto p-3 text-left" }, _react2.default.createElement("div", { className: "btn-group w-100", role: "group", "aria-label": "Basic example" }, this.state.structureSheet && this.state.structureSheet.trim() != '' ? _react2.default.createElement("a", { target: "_blank", href: this.state.structureSheet, className: "btn btn-light form-control" }, "Structure") : '', this.state.resultsLink && this.state.resultsLink.trim() != '' ? _react2.default.createElement("a", { target: "_blank", href: this.state.resultsLink, className: "btn btn-light form-control" }, "Results") : '', _react2.default.createElement("button", { onClick: function onClick() {
                     return _this3.props.history.goBack();
-                }, className: "btn btn-light form-control" }, "Back"))))), this.state.slug ? _react2.default.createElement("div", { className: "p-4" }, _react2.default.createElement(_reactDisqusComments2.default, {
-                shortname: "the-poker-society",
-                identifier: this.state.slug,
-                title: this.state.title,
-                url: window.location.href,
-                category_id: "123456",
-                onNewComment: this.handleNewComment })) : '');
+                }, className: "btn btn-light form-control" }, "Back"))))));
         }
     }]);
 
