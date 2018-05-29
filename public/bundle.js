@@ -62,7 +62,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "226c329c47d8a2e0b67b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d8361d7794549c279a9e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -76725,16 +76725,27 @@ var Navbar = function (_React$Component) {
     function Navbar() {
         _classCallCheck(this, Navbar);
 
-        return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this));
+
+        _this.state = {
+            showNavbar: false
+        };
+        return _this;
     }
 
     _createClass(Navbar, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {}
-    }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('nav', { className: 'main-navbar navbar navbar-light bg-light' }, _react2.default.createElement(_reactRouterDom.Link, { className: 'navbar-brand', to: '/' }, _react2.default.createElement('img', { className: 'mr-2', src: _pokerIcon2.default }), 'The Poker Society'), _react2.default.createElement('button', { className: 'navbar-toggler', type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarNav', 'aria-controls': 'navbarNav', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation' }, _react2.default.createElement('span', { className: 'navbar-toggler-icon' })), _react2.default.createElement('div', { className: 'collapse navbar-collapse', id: 'navbarNav' }, _react2.default.createElement('ul', { className: 'navbar-nav' }, _react2.default.createElement('li', { className: 'nav-item' }, _react2.default.createElement(_reactRouterDom.NavLink, { className: 'nav-link', to: '/home' }, 'Home'), _react2.default.createElement('a', { className: 'nav-link', href: 'mailto:info@thepokersociety.com' }, 'Contact Us')))));
+            var _this2 = this;
+
+            var collapseClass = this.state.showNavbar ? 'show' : '';
+            return _react2.default.createElement('nav', { className: 'main-navbar navbar navbar-light bg-light' }, _react2.default.createElement(_reactRouterDom.Link, { className: 'navbar-brand', to: '/' }, _react2.default.createElement('img', { className: 'mr-2', src: _pokerIcon2.default }), 'The Poker Society'), _react2.default.createElement('button', {
+                className: 'navbar-toggler', type: 'button', 'data-toggle': 'collapse',
+                'data-target': '#navbarNav', 'aria-controls': 'navbarNav', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation',
+                onClick: function onClick() {
+                    return _this2.setState({ showNavbar: !_this2.state.showNavbar });
+                }
+            }, _react2.default.createElement('span', { className: 'navbar-toggler-icon' })), _react2.default.createElement('div', { className: "collapse navbar-collapse " + collapseClass, id: 'navbarNav' }, _react2.default.createElement('ul', { className: 'navbar-nav' }, _react2.default.createElement('li', { className: 'nav-item' }, _react2.default.createElement(_reactRouterDom.NavLink, { className: 'nav-link', to: '/home' }, 'Home'), _react2.default.createElement('a', { className: 'nav-link', href: 'mailto:info@thepokersociety.com' }, 'Contact Us')))));
         }
     }]);
 
@@ -76811,7 +76822,8 @@ var SearchBar = function (_React$Component) {
 
         _this.state = {
             filters: [{ label: 'Filter', slug: 'filter', msg: 'Type tournament name, date, etc.' }, { label: 'Date', slug: 'date', msg: 'Month, day Number, day of the week...' }, { label: 'Time', slug: 'time', msg: 'Type the time: E.g: 3pm or 3:30pm' }, { label: 'Where', slug: 'where', msg: 'Type the venue name' }, { label: 'Tournament', slug: 'tournament', msg: 'Type tournament name' }, { label: 'Buy in', slug: 'buyin', msg: 'Type the amount in dollars, E.g: $100' }, { label: 'Starting Stack', slug: 'starting', msg: 'E.g: 10,000' }, { label: 'Blinds', slug: 'blinds', msg: '' }],
-            currentFilter: 0
+            currentFilter: 0,
+            showFilters: false
         };
         return _this;
     }
@@ -76831,11 +76843,24 @@ var SearchBar = function (_React$Component) {
                 return _react2.default.createElement('a', {
                     key: i, className: 'dropdown-item', href: '#',
                     onClick: function onClick() {
-                        _this2.setState({ currentFilter: i });
+                        _this2.setState({
+                            currentFilter: i,
+                            showFilters: false
+                        });
                     }
                 }, item.label);
             });
-            return _react2.default.createElement('div', { className: "searchbar " + this.props.className }, _react2.default.createElement('div', { className: 'input-group mb-3' }, _react2.default.createElement('div', { className: 'input-group-prepend' }, _react2.default.createElement('div', { className: 'dropdown' }, _react2.default.createElement('button', { className: 'btn btn-secondary dropdown-toggle', type: 'button', id: 'dropdownMenuButton', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' }, this.state.filters[this.state.currentFilter].label), _react2.default.createElement('div', { className: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton' }, filters))), _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'click to search',
+            return _react2.default.createElement('div', { className: "searchbar " + this.props.className }, _react2.default.createElement('div', { className: 'input-group mb-3' }, _react2.default.createElement('div', { className: 'input-group-prepend' }, _react2.default.createElement('div', { className: 'dropdown' }, _react2.default.createElement('button', {
+                className: 'btn btn-secondary dropdown-toggle',
+                type: 'button', id: 'dropdownMenuButton',
+                'data-toggle': 'dropdown',
+                'aria-haspopup': 'true', 'aria-expanded': 'false',
+                onClick: function onClick() {
+                    return _this2.setState({ showFilters: !_this2.state.showFilters });
+                }
+            }, this.state.filters[this.state.currentFilter].label), _react2.default.createElement('div', {
+                className: "dropdown-menu " + (this.state.showFilters ? 'show' : ''),
+                'aria-labelledby': 'dropdownMenuButton' }, filters))), _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'click to search',
                 onChange: this.onChange.bind(this),
                 onFocus: function onFocus(e) {
                     return e.target.placeholder = _this2.state.filters[_this2.state.currentFilter].msg;
@@ -77042,10 +77067,6 @@ var _Layout = __webpack_require__(/*! ./Layout.jsx */ "./src/js/Layout.jsx");
 
 var _Layout2 = _interopRequireDefault(_Layout);
 
-var _jquery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
@@ -77058,12 +77079,6 @@ function _interopRequireDefault(obj) {
 _reactDom2.default.render(_react2.default.createElement(_Layout2.default, null), document.querySelector('#app'));
 
 //import your own components
-
-
-(0, _jquery2.default)(".navbar-toggler").click(function (e) {
-  (0, _jquery2.default)(this).toggleClass("collapsed");
-  (0, _jquery2.default)(this).siblings('.collapse').toggleClass("show");
-});
 
 /***/ }),
 

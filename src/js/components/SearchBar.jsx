@@ -15,7 +15,8 @@ class SearchBar extends React.Component{
                 { label: 'Starting Stack', slug: 'starting', msg: 'E.g: 10,000' },
                 { label: 'Blinds', slug: 'blinds', msg: '' }
             ],
-            currentFilter: 0
+            currentFilter: 0,
+            showFilters: false
         };
     }
     
@@ -29,7 +30,10 @@ class SearchBar extends React.Component{
             <a 
                 key={i} className="dropdown-item" href="#"
                 onClick={ ()=> {
-                    this.setState({currentFilter: i});
+                    this.setState({
+                        currentFilter: i,
+                        showFilters: false
+                    });
                 }}
             >
                 {item.label}
@@ -40,10 +44,18 @@ class SearchBar extends React.Component{
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
                         <div className="dropdown">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button 
+                                className="btn btn-secondary dropdown-toggle" 
+                                type="button" id="dropdownMenuButton" 
+                                data-toggle="dropdown" 
+                                aria-haspopup="true" aria-expanded="false"
+                                onClick={() => this.setState({showFilters: !this.state.showFilters })}
+                            >
                                 {this.state.filters[this.state.currentFilter].label}
                             </button>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div 
+                                className={"dropdown-menu "+((this.state.showFilters) ? 'show':'')}
+                                aria-labelledby="dropdownMenuButton">
                                 {filters}
                             </div>
                         </div>

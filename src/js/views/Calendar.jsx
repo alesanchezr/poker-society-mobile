@@ -37,6 +37,7 @@ export default class Calendar extends Flux.View {
         
         window.addEventListener('scroll', this.handleScroll.bind(this));
         this.tableBody.addEventListener('scroll', this.handleScrollTable.bind(this));
+        
     }
     componentWillUnmount(){
         window.removeEventListener('scroll', this.handleScroll.bind(this));

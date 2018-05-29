@@ -15,10 +15,3 @@ ReactDOM.render(
     <Layout />,
     document.querySelector('#app')
 );
-
-import $ from "jquery";
-
-$(".navbar-toggler").click(function(e){
-  $(this).toggleClass("collapsed");
-  $(this).siblings('.collapse').toggleClass("show");
-});
